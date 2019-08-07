@@ -132,7 +132,7 @@ public class SampleRestController {
     return ResponseEntity.accepted().build();
   }
 
-  @Permittable(value = AcceptedTokenType.TENANT, groupId = PermittableGroupIds.SAMPLE_MANAGEMENT)
+  @Permittable(value = AcceptedTokenType.TENANT, groupId = org.apache.fineract.cn.accounting.api.v1.PermittableGroupIds.THOTH_ACCOUNT)
   @RequestMapping(
     value = "/import",
     method = RequestMethod.GET,
