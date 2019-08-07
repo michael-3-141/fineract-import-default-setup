@@ -21,7 +21,10 @@ package org.apache.fineract.cn.template.service.rest;
 import org.apache.fineract.cn.accounting.api.v1.client.LedgerManager;
 import org.apache.fineract.cn.accounting.importer.AccountImporter;
 import org.apache.fineract.cn.accounting.importer.LedgerImporter;
+import org.apache.fineract.cn.api.context.AutoGuest;
+import org.apache.fineract.cn.api.context.AutoUserContext;
 import org.apache.fineract.cn.identity.api.v1.client.IdentityManager;
+import org.apache.fineract.cn.identity.api.v1.domain.Authentication;
 import org.apache.fineract.cn.template.api.v1.PermittableGroupIds;
 import org.apache.fineract.cn.template.api.v1.domain.Sample;
 import org.apache.fineract.cn.template.service.ServiceConstants;
@@ -132,12 +135,12 @@ public class SampleRestController {
     return ResponseEntity.accepted().build();
   }
 
-  @Permittable(value = AcceptedTokenType.TENANT, groupId = org.apache.fineract.cn.accounting.api.v1.PermittableGroupIds.THOTH_ACCOUNT)
+  @Permittable(value = AcceptedTokenType.TENANT, groupId = PermittableGroupIds.SAMPLE_MANAGEMENT)
   @RequestMapping(
     value = "/import",
     method = RequestMethod.GET,
     consumes = MediaType.ALL_VALUE,
-    produces = MediaType.APPLICATION_JSON_VALUE
+    produces = MediaType.ALL_VALUE
   )
   public
   @ResponseBody

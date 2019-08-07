@@ -56,4 +56,12 @@ public interface TemplateManager {
   )
   @ThrowsException(status = HttpStatus.I_AM_A_TEAPOT, exception = IamATeapotException.class)
   void createEntity(final Sample sample);
+
+  @RequestMapping(
+          value = "/import",
+          method = RequestMethod.GET,
+          produces = MediaType.ALL_VALUE,
+          consumes = MediaType.ALL_VALUE
+  )
+  void importChart();
 }
