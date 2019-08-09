@@ -59,7 +59,6 @@ dependencies {
             [group: 'org.apache.fineract.cn', name: 'command', version: versions.frameworkcommand],
             [group: 'org.apache.fineract.cn.accounting', name: 'api', version: versions.frameworkapi],
             [group: 'org.apache.fineract.cn.accounting', name: 'importer', version: versions.frameworkapi],
-            [group: 'org.apache.fineract.cn.identity', name: 'api', version: versions.frameworkapi],
             [group: 'org.hibernate', name: 'hibernate-validator', version: versions.validator]
     )
 }

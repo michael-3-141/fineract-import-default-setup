@@ -20,7 +20,7 @@
 spring:
   cloud:
     discovery:
-      enabled: false
+      enabled: true
     config:
       enabled: false
 
@@ -35,7 +35,7 @@ eureka:
 
 server:
   port: 8081
-  contextPath: /template/v1/*
+  contextPath: /importer/v1/*
 
 cassandra:
   clusterName: staging_cluster
@@ -71,7 +71,3 @@ async:
 
 flyway:
   enabled: false
-
-accounting-v1:
-  ribbon:
-    listOfServers: http://172.16.238.11:2025

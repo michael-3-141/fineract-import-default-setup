@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-group 'org.apache.fineract.cn.template'
+group 'io.instate.fineract.cn.importer'
 version '0.1.0.BUILD-SNAPSHOT'
 
 ext.versions = [

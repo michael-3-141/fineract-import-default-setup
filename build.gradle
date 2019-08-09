@@ -26,17 +26,17 @@ task publishServiceToMavenLocal {
     dependsOn gradle.includedBuild('service').task(':publishToMavenLocal')
 }
 
-task publishComponentTestToMavenLocal {
+/*task publishComponentTestToMavenLocal {
     mustRunAfter publishApiToMavenLocal
     mustRunAfter publishServiceToMavenLocal
     dependsOn gradle.includedBuild('component-test').task(':publishToMavenLocal')
-}
+}*/
 
 task publishToMavenLocal {
     group 'all'
     dependsOn publishApiToMavenLocal
     dependsOn publishServiceToMavenLocal
-    dependsOn publishComponentTestToMavenLocal
+    //dependsOn publishComponentTestToMavenLocal
 }
 
 task artifactoryPublish {
@@ -44,25 +44,25 @@ task artifactoryPublish {
     dependsOn publishToMavenLocal
     dependsOn gradle.includedBuild('api').task(':artifactoryPublish')
     dependsOn gradle.includedBuild('service').task(':artifactoryPublish')
-    dependsOn gradle.includedBuild('component-test').task(':artifactoryPublish')
+//    dependsOn gradle.includedBuild('component-test').task(':artifactoryPublish')
 }
 
 task prepareForTest {
     group 'all'
     dependsOn publishToMavenLocal
-    dependsOn gradle.includedBuild('component-test').task(':build')
+//    dependsOn gradle.includedBuild('component-test').task(':build')
 }
 
 task licenseFormat {
     group 'all'
     dependsOn gradle.includedBuild('api').task(':licenseFormat')
     dependsOn gradle.includedBuild('service').task(':licenseFormat')
-    dependsOn gradle.includedBuild('component-test').task(':licenseFormat')
+//    dependsOn gradle.includedBuild('component-test').task(':licenseFormat')
 }
 
 task rat {
     group 'all'
     dependsOn gradle.includedBuild('api').task(':rat')
     dependsOn gradle.includedBuild('service').task(':rat')
-    dependsOn gradle.includedBuild('component-test').task(':rat')
+//    dependsOn gradle.includedBuild('component-test').task(':rat')
 }
