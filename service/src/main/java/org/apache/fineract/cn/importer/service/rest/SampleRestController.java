@@ -27,21 +27,19 @@ import org.apache.fineract.cn.command.gateway.CommandGateway;
 import org.apache.fineract.cn.importer.service.ImporterApplication;
 import org.apache.fineract.cn.importer.service.ServiceConstants;
 import org.apache.fineract.cn.importer.service.internal.command.InitializeServiceCommand;
-import org.apache.fineract.cn.importer.service.internal.command.SampleCommand;
 import org.apache.fineract.cn.importer.service.internal.service.SampleService;
-import org.apache.fineract.cn.lang.ServiceException;
 import org.apache.fineract.cn.template.api.v1.PermittableGroupIds;
-import org.apache.fineract.cn.template.api.v1.domain.Sample;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.net.URL;
-import java.util.List;
 
 @SuppressWarnings("unused")
 @RestController
@@ -79,48 +77,6 @@ public class SampleRestController {
   ResponseEntity<Void> initialize() throws InterruptedException {
       this.commandGateway.process(new InitializeServiceCommand());
       return ResponseEntity.accepted().build();
-  }
-
-  @Permittable(value = AcceptedTokenType.TENANT, groupId = PermittableGroupIds.SAMPLE_MANAGEMENT)
-  @RequestMapping(
-          value = "/sample",
-          method = RequestMethod.GET,
-          consumes = MediaType.ALL_VALUE,
-          produces = MediaType.APPLICATION_JSON_VALUE
-  )
-  public
-  @ResponseBody
-  List<Sample> findAllEntities() {
-    return this.sampleService.findAllEntities();
-  }
-
-  @Permittable(value = AcceptedTokenType.TENANT, groupId = PermittableGroupIds.SAMPLE_MANAGEMENT)
-  @RequestMapping(
-          value = "/sample/{identifier}",
-          method = RequestMethod.GET,
-          consumes = MediaType.ALL_VALUE,
-          produces = MediaType.APPLICATION_JSON_VALUE
-  )
-  public
-  @ResponseBody
-  ResponseEntity<Sample> getEntity(@PathVariable("identifier") final String identifier) {
-    return this.sampleService.findByIdentifier(identifier)
-            .map(ResponseEntity::ok)
-            .orElseThrow(() -> ServiceException.notFound("Instance with identifier " + identifier + " doesn't exist."));
-  }
-
-  @Permittable(value = AcceptedTokenType.TENANT, groupId = PermittableGroupIds.SAMPLE_MANAGEMENT)
-  @RequestMapping(
-      value = "/sample",
-      method = RequestMethod.POST,
-      consumes = MediaType.APPLICATION_JSON_VALUE,
-      produces = MediaType.APPLICATION_JSON_VALUE
-  )
-  public
-  @ResponseBody
-  ResponseEntity<Void> createEntity(@RequestBody @Valid final Sample instance) throws InterruptedException {
-    this.commandGateway.process(new SampleCommand(instance));
-    return ResponseEntity.accepted().build();
   }
 
   @Permittable(value = AcceptedTokenType.TENANT, groupId = PermittableGroupIds.SAMPLE_MANAGEMENT)
