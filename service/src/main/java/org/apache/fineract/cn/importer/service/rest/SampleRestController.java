@@ -27,7 +27,6 @@ import org.apache.fineract.cn.command.gateway.CommandGateway;
 import org.apache.fineract.cn.importer.service.ImporterApplication;
 import org.apache.fineract.cn.importer.service.ServiceConstants;
 import org.apache.fineract.cn.importer.service.internal.command.InitializeServiceCommand;
-import org.apache.fineract.cn.importer.service.internal.service.SampleService;
 import org.apache.fineract.cn.template.api.v1.PermittableGroupIds;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,19 +47,16 @@ public class SampleRestController {
 
   private final Logger logger;
   private final CommandGateway commandGateway;
-  private final SampleService sampleService;
 
   private LedgerManager ledgerManager;
 
   @Autowired
   public SampleRestController(@Qualifier(ServiceConstants.LOGGER_NAME) final Logger logger,
                               final CommandGateway commandGateway,
-                              final SampleService sampleService,
                               final LedgerManager ledgerManager) {
     super();
     this.logger = logger;
     this.commandGateway = commandGateway;
-    this.sampleService = sampleService;
 
     this.ledgerManager = ledgerManager;
   }
