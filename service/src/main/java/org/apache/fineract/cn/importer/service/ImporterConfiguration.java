@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.fineract.cn.template.service;
+package org.apache.fineract.cn.importer.service;
 
 import org.apache.fineract.cn.anubis.config.EnableAnubis;
 import org.apache.fineract.cn.async.config.EnableAsync;
@@ -49,18 +49,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableAnubis
 @EnableServiceException
 @ComponentScan({
-    "org.apache.fineract.cn.template.service.rest",
-    "org.apache.fineract.cn.template.service.internal.service",
-    "org.apache.fineract.cn.template.service.internal.repository",
-    "org.apache.fineract.cn.template.service.internal.command.handler"
+    "org.apache.fineract.cn.importer.service.rest",
+    "org.apache.fineract.cn.importer.service.internal.service",
+    "org.apache.fineract.cn.importer.service.internal.repository",
+    "org.apache.fineract.cn.importer.service.internal.command.handler"
 })
 @EnableJpaRepositories({
-    "org.apache.fineract.cn.template.service.internal.repository"
+    "org.apache.fineract.cn.importer.service.internal.repository"
 })
 @EnableFeignClients(basePackages = {"org.apache.fineract.cn.accounting.api.v1.client", "org.apache.fineract.cn.identity.api.v1.client"})
-public class TemplateConfiguration extends WebMvcConfigurerAdapter {
+public class ImporterConfiguration extends WebMvcConfigurerAdapter {
 
-  public TemplateConfiguration() {
+  public ImporterConfiguration() {
     super();
   }
 

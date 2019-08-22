@@ -16,49 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.fineract.cn.template.service.internal.repository;
+package org.apache.fineract.cn.importer.service.internal.command;
 
-import javax.persistence.*;
+public class InitializeServiceCommand {
 
-@SuppressWarnings("unused")
-@Entity
-@Table(name = "template_samples")
-public class SampleJpaEntity {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private Long id;
-  @Column(name = "identifier")
-  private String identifier;
-  @Column(name = "payload")
-  private String payload;
-
-  public SampleJpaEntity() {
+  public InitializeServiceCommand() {
     super();
   }
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getIdentifier() {
-    return this.identifier;
-  }
-
-  public void setIdentifier(final String identifier) {
-    this.identifier = identifier;
-  }
-
-  public String getPayload() {
-    return payload;
-  }
-
-  public void setPayload(String payload) {
-    this.payload = payload;
+  @Override
+  public String toString() {
+    return "InitializeServiceCommand{}";
   }
 }

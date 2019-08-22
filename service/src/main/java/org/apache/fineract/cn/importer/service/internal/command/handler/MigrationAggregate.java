@@ -16,22 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.fineract.cn.template.service.internal.command.handler;
+package org.apache.fineract.cn.importer.service.internal.command.handler;
 
-import org.apache.fineract.cn.template.api.v1.events.EventConstants;
-import org.apache.fineract.cn.template.service.ServiceConstants;
-import org.apache.fineract.cn.template.service.internal.command.InitializeServiceCommand;
-import javax.sql.DataSource;
 import org.apache.fineract.cn.command.annotation.Aggregate;
 import org.apache.fineract.cn.command.annotation.CommandHandler;
 import org.apache.fineract.cn.command.annotation.CommandLogLevel;
 import org.apache.fineract.cn.command.annotation.EventEmitter;
+import org.apache.fineract.cn.importer.service.ServiceConstants;
+import org.apache.fineract.cn.importer.service.internal.command.InitializeServiceCommand;
 import org.apache.fineract.cn.lang.ApplicationName;
 import org.apache.fineract.cn.mariadb.domain.FlywayFactoryBean;
+import org.apache.fineract.cn.template.api.v1.events.EventConstants;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.sql.DataSource;
 
 @SuppressWarnings({
     "unused"

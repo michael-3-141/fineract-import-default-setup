@@ -16,17 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.fineract.cn.template.service;
+package org.apache.fineract.cn.importer.service;
 
 import org.springframework.boot.SpringApplication;
 
-public class TemplateApplication {
+public class ImporterApplication {
 
-  public TemplateApplication() {
+  public ImporterApplication() {
     super();
   }
 
   public static void main(String[] args) {
-    SpringApplication.run(TemplateConfiguration.class, args);
+    SpringApplication.run(ImporterConfiguration.class, args);
   }
 }

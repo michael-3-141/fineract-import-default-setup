@@ -16,41 +16,32 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.fineract.cn.template.service.rest;
+package org.apache.fineract.cn.importer.service.rest;
 
 import org.apache.fineract.cn.accounting.api.v1.client.LedgerManager;
 import org.apache.fineract.cn.accounting.importer.AccountImporter;
 import org.apache.fineract.cn.accounting.importer.LedgerImporter;
-import org.apache.fineract.cn.api.context.AutoGuest;
-import org.apache.fineract.cn.api.context.AutoUserContext;
-import org.apache.fineract.cn.identity.api.v1.client.IdentityManager;
-import org.apache.fineract.cn.identity.api.v1.domain.Authentication;
-import org.apache.fineract.cn.template.api.v1.PermittableGroupIds;
-import org.apache.fineract.cn.template.api.v1.domain.Sample;
-import org.apache.fineract.cn.template.service.ServiceConstants;
-import org.apache.fineract.cn.template.service.TemplateApplication;
-import org.apache.fineract.cn.template.service.internal.command.InitializeServiceCommand;
-import org.apache.fineract.cn.template.service.internal.command.SampleCommand;
-import org.apache.fineract.cn.template.service.internal.service.SampleService;
-
-import java.net.URL;
-import java.util.List;
-import javax.validation.Valid;
 import org.apache.fineract.cn.anubis.annotation.AcceptedTokenType;
 import org.apache.fineract.cn.anubis.annotation.Permittable;
 import org.apache.fineract.cn.command.gateway.CommandGateway;
+import org.apache.fineract.cn.importer.service.ImporterApplication;
+import org.apache.fineract.cn.importer.service.ServiceConstants;
+import org.apache.fineract.cn.importer.service.internal.command.InitializeServiceCommand;
+import org.apache.fineract.cn.importer.service.internal.command.SampleCommand;
+import org.apache.fineract.cn.importer.service.internal.service.SampleService;
 import org.apache.fineract.cn.lang.ServiceException;
+import org.apache.fineract.cn.template.api.v1.PermittableGroupIds;
+import org.apache.fineract.cn.template.api.v1.domain.Sample;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.net.URL;
+import java.util.List;
 
 @SuppressWarnings("unused")
 @RestController
@@ -62,21 +53,18 @@ public class SampleRestController {
   private final SampleService sampleService;
 
   private LedgerManager ledgerManager;
-  private IdentityManager identityManager;
 
   @Autowired
   public SampleRestController(@Qualifier(ServiceConstants.LOGGER_NAME) final Logger logger,
                               final CommandGateway commandGateway,
                               final SampleService sampleService,
-                              final LedgerManager ledgerManager,
-                              final IdentityManager identityManager) {
+                              final LedgerManager ledgerManager) {
     super();
     this.logger = logger;
     this.commandGateway = commandGateway;
     this.sampleService = sampleService;
 
     this.ledgerManager = ledgerManager;
-    this.identityManager = identityManager;
   }
 
   @Permittable(value = AcceptedTokenType.SYSTEM)
@@ -148,12 +136,12 @@ public class SampleRestController {
     logger.info("Import called!");
     try {
       final LedgerImporter ledgerImporter = new LedgerImporter(ledgerManager, logger);
-      final URL ledgersUrl = TemplateApplication.class.getResource("/standardChartOfAccounts/ledgers.csv");
+      final URL ledgersUrl = ImporterApplication.class.getResource("/standardChartOfAccounts/ledgers.csv");
       ledgerImporter.importCSV(ledgersUrl);
       //this.eventRecorder.wait(POST_LEDGER, LOAN_INCOME_LEDGER);
       logger.info("imported ledgers");
       final AccountImporter accountImporter = new AccountImporter(ledgerManager, logger);
-      final URL accountsUrl = TemplateApplication.class.getResource("/standardChartOfAccounts/accounts.csv");
+      final URL accountsUrl = ImporterApplication.class.getResource("/standardChartOfAccounts/accounts.csv");
       accountImporter.importCSV(accountsUrl);
       //this.eventRecorder.wait(POST_ACCOUNT, "9330");
       logger.info("imported accounts");

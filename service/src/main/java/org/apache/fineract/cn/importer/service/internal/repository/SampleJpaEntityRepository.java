@@ -16,8 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.fineract.cn.template.service;
+package org.apache.fineract.cn.importer.service.internal.repository;
 
-public interface ServiceConstants {
-  String LOGGER_NAME = "rest-logger";
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface SampleJpaEntityRepository extends JpaRepository<SampleJpaEntity, Long> {
+  Optional<SampleJpaEntity> findByIdentifier(String identifier);
 }

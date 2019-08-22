@@ -16,11 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.fineract.cn.template.service.internal.service;
+package org.apache.fineract.cn.importer.service.internal.service;
 
 import org.apache.fineract.cn.template.api.v1.domain.Sample;
-import org.apache.fineract.cn.template.service.internal.mapper.SampleMapper;
-import org.apache.fineract.cn.template.service.internal.repository.SampleJpaEntityRepository;
+import org.apache.fineract.cn.importer.service.internal.mapper.SampleMapper;
+import org.apache.fineract.cn.importer.service.internal.repository.SampleJpaEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

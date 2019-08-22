@@ -16,31 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.fineract.cn.template.service.internal.mapper;
+package org.apache.fineract.cn.importer.service.internal.command;
 
 import org.apache.fineract.cn.template.api.v1.domain.Sample;
-import org.apache.fineract.cn.template.service.internal.repository.SampleJpaEntity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+public class SampleCommand {
 
-public class SampleMapper {
+  private final Sample sample;
 
-  private SampleMapper() {
+  public SampleCommand(final Sample sample) {
     super();
+    this.sample = sample;
   }
 
-  public static Sample map(final SampleJpaEntity sampleJpaEntity) {
-    final Sample sample = new Sample();
-    sample.setIdentifier(sampleJpaEntity.getIdentifier());
-    sample.setPayload(sampleJpaEntity.getPayload());
-    return sample;
+  public Sample sample() {
+    return this.sample;
   }
 
-  public static List<Sample> map(final List<SampleJpaEntity> sampleJpaEntities) {
-    final ArrayList<Sample> samples = new ArrayList<>(sampleJpaEntities.size());
-    samples.addAll(sampleJpaEntities.stream().map(SampleMapper::map).collect(Collectors.toList()));
-    return samples;
+  @Override
+  public String toString() {
+    return "SampleCommand{" +
+        "sample=" + sample.getIdentifier() +
+        '}';
   }
 }

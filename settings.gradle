@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-rootProject.name = 'template'
+rootProject.name = 'importer'
 
-includeBuild 'api'
+//includeBuild 'api'
 includeBuild 'service'
-includeBuild 'component-test'
+//includeBuild 'component-test'
 
