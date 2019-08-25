@@ -27,7 +27,6 @@ import org.apache.fineract.cn.command.gateway.CommandGateway;
 import org.apache.fineract.cn.importer.service.ImporterApplication;
 import org.apache.fineract.cn.importer.service.ServiceConstants;
 import org.apache.fineract.cn.importer.service.internal.command.InitializeServiceCommand;
-import org.apache.fineract.cn.template.api.v1.PermittableGroupIds;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -75,7 +74,7 @@ public class ImporterRestController {
       return ResponseEntity.accepted().build();
   }
 
-  @Permittable(value = AcceptedTokenType.TENANT, groupId = PermittableGroupIds.SAMPLE_MANAGEMENT)
+  @Permittable(value = AcceptedTokenType.TENANT, groupId = ServiceConstants.IMPORT_PERMITTABLE_GROUP)
   @RequestMapping(
     value = "/import",
     method = RequestMethod.GET,

@@ -20,4 +20,6 @@ package org.apache.fineract.cn.importer.service;
 
 public interface ServiceConstants {
   String LOGGER_NAME = "rest-logger";
+
+  String IMPORT_PERMITTABLE_GROUP = "importer__v1__import";
 }
