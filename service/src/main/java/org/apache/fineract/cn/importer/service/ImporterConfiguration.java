@@ -49,8 +49,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableServiceException
 @ComponentScan({
     "org.apache.fineract.cn.importer.service.rest",
-    "org.apache.fineract.cn.importer.service.internal.service",
-    "org.apache.fineract.cn.importer.service.internal.repository",
     "org.apache.fineract.cn.importer.service.internal.command.handler"
 })
 @EnableFeignClients(basePackages = {"org.apache.fineract.cn.accounting.api.v1.client", "org.apache.fineract.cn.identity.api.v1.client"})

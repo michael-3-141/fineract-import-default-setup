@@ -43,7 +43,7 @@ import java.net.URL;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/")
-public class SampleRestController {
+public class ImporterRestController {
 
   private final Logger logger;
   private final CommandGateway commandGateway;
@@ -51,9 +51,9 @@ public class SampleRestController {
   private LedgerManager ledgerManager;
 
   @Autowired
-  public SampleRestController(@Qualifier(ServiceConstants.LOGGER_NAME) final Logger logger,
-                              final CommandGateway commandGateway,
-                              final LedgerManager ledgerManager) {
+  public ImporterRestController(@Qualifier(ServiceConstants.LOGGER_NAME) final Logger logger,
+                                final CommandGateway commandGateway,
+                                final LedgerManager ledgerManager) {
     super();
     this.logger = logger;
     this.commandGateway = commandGateway;
