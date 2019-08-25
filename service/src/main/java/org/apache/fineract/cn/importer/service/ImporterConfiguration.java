@@ -28,6 +28,7 @@ import org.apache.fineract.cn.mariadb.config.EnableMariaDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +39,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @SuppressWarnings("WeakerAccess")
 @Configuration
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = HibernateJpaAutoConfiguration.class)
 @EnableDiscoveryClient
 @EnableAsync
 @EnableTenantContext
@@ -49,7 +50,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableServiceException
 @ComponentScan({
     "org.apache.fineract.cn.importer.service.rest",
-    "org.apache.fineract.cn.importer.service.internal.command.handler"
 })
 @EnableFeignClients(basePackages = {"org.apache.fineract.cn.accounting.api.v1.client", "org.apache.fineract.cn.identity.api.v1.client"})
 public class ImporterConfiguration extends WebMvcConfigurerAdapter {

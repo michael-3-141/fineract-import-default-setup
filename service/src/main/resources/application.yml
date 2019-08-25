@@ -23,6 +23,10 @@ spring:
       enabled: false
     config:
       enabled: false
+  data:
+    jpa:
+      repositories:
+        enabled: false
 
 eureka:
   client:
