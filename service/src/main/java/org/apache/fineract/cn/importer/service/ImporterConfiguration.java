@@ -33,7 +33,6 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -53,9 +52,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
     "org.apache.fineract.cn.importer.service.internal.service",
     "org.apache.fineract.cn.importer.service.internal.repository",
     "org.apache.fineract.cn.importer.service.internal.command.handler"
-})
-@EnableJpaRepositories({
-    "org.apache.fineract.cn.importer.service.internal.repository"
 })
 @EnableFeignClients(basePackages = {"org.apache.fineract.cn.accounting.api.v1.client", "org.apache.fineract.cn.identity.api.v1.client"})
 public class ImporterConfiguration extends WebMvcConfigurerAdapter {
